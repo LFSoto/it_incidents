@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TypeAnimation } from 'react-type-animation';
 import axios from 'axios';
 
 function Chatbot() {
@@ -18,25 +19,95 @@ function Chatbot() {
         }
     };
 
+    // Inline styles
+    const styles = {
+        container: {
+            fontFamily: 'Arial, sans-serif',
+            maxWidth: '600px',
+            margin: '0 auto',
+            padding: '20px',
+            backgroundColor: '#f5f5f5',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            minHeight: '400px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+        },
+        form: {
+            display: 'flex',
+            borderTop: '1px solid #ddd'
+        },
+        input: {
+            flex: 1,
+            padding: '10px',
+            fontSize: '16px',
+            border: 'none',
+            outline: 'none'
+        },
+        button: {
+            padding: '10px 20px',
+            fontSize: '16px',
+            border: 'none',
+            backgroundColor: '#007BFF',
+            color: 'white',
+            cursor: 'pointer'
+        },
+        messages: {
+            flex: 1,
+            overflowY: 'auto'
+        },
+        message: {
+            margin: '5px 0',
+            padding: '10px',
+            borderRadius: '5px',
+            backgroundColor: '#e0e0e0'
+        },
+        userMessage: {
+            textAlign: 'right',
+            backgroundColor: '#007BFF',
+            color: 'white'
+        }
+    };
+
     return (
-        <div>
+        <div style={styles.container}>
             <h1>IT Support Chatbot</h1>
-            <form onSubmit={handleSubmit}>
+            <div style={styles.messages}>
+                <div style={styles.messages}>
+                    {responses.map((exchange, index) => (
+                        <p key={index}>
+                            <p style={{fontWeight:'bold'}}>You</p>
+                            <p>
+                                {exchange.query} <br />
+                            </p> 
+                            <div style={{textAlign: 'end'}}>
+                                <p>Bot</p>
+                                <p>
+                                    <TypeAnimation
+                                        sequence={[exchange.reply, 1000]}
+                                        speed={50}
+                                    /><br /> 
+                                </p> 
+                            </div>
+                        </p>
+                    ))}
+                </div>   
+            </div>
+            <form onSubmit={handleSubmit} style={styles.form}>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Describe your IT issue..."
+                    style={styles.input}
                 />
-                <button type="submit">Send</button>
+                <button type="submit" style={styles.button}>Send</button>
             </form>
-            <div>
-                {responses.map((exchange, index) => (
-                    <p key={index}><strong>You:</strong> {exchange.query} <br /><strong>Bot:</strong> {exchange.reply}</p>
-                ))}
-            </div>
+           
         </div>
     );
 }
 
 export default Chatbot;
+

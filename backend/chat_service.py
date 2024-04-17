@@ -12,9 +12,9 @@ error_solution = Relation()
 
 # Definir hechos (errores y soluciones)
 facts(error_solution, 
-      ("hardware malfunction", "check warranty and seek repairs"),
-      ("cable connection lost", "check and reconnect cables"),
-      ("device driver outdated", "update driver from manufacturer's website"),
+      ("hardware malfunction", "I see, maybe you should try checking warranty and seek repairs."),
+      ("cable connection lost", "Check and reconnect cables."),
+      ("device driver outdated", "Update driver from manufacturer's website."),
       ("incorrect credentials are", "Reset or reconfigure your login credentials."),
       ("software plugin is not installed.", "Identify and install the necessary plugin."),
       ("failed to update password.", "Attempt to change the password again or contact support."),
@@ -28,13 +28,8 @@ facts(error_solution,
 
 # Función para consultar la solución a un error
 def get_solution(error_message):
-    # Variable lógica para la solución
     solution = var()
-    
-    # Realizar la consulta
-    result = run(1, solution, error_solution(error_message, solution))
-    
-    # Retornar la solución si existe, de lo contrario indicar que no se encontró solución
+    result = run(1, solution, error_solution(error_message.lower(), solution))
     if result:
         return result[0]
     else:
@@ -44,15 +39,8 @@ def get_solution(error_message):
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json(force=True)
-    # Transform the input using the loaded vectorizer
     print(data['description'])
     return jsonify(solution=get_solution(data['description']))
-
-    # transformed_input = vectorizer.transform([data['description']])
-    # prediction = model.predict(transformed_input)
-    # response_map = {label: description for description, label in enumerate(model.classes_)}
-    # response = response_map.get(prediction[0], "Unknown Issue")
-    # return jsonify(solution=issue_description_and_solution(response))
 
 if __name__ == '__main__':
     app.run(debug=True)
