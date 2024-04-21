@@ -29,7 +29,7 @@ pip install -r requirements.txt
 Debido a unos errores de compatibilidad con la versión de Python instalada, se debe hacer un cambio en el código fuente de la librería kanren.
 
 Buscar uso de la librería **collections** y cambiarlo por **collections.abc** para los archivos:
-```backend\venv\lib\python_version\site-packages\kanren\util.py```
+```backend\venv\lib\python_version\site-packages\kanren\util.py```  
 ```backend\venv\lib\python_version\site-packages\unification\core.py```
 
 
@@ -37,13 +37,13 @@ Buscar uso de la librería **collections** y cambiarlo por **collections.abc** p
 #### Ejemplo del cambio:
 
 Para util.py:   
-`from collections import Hashable`
-Cambiar a:
+`from collections import Hashable`    
+Cambiar a:   
 `from collections.abc import Hashable`
 
-Para core.py:
-`from collections import Iterator`
-Cambiar a:
+Para core.py:   
+`from collections import Iterator`   
+Cambiar a:   
 `from collections.abc import Iterator`
 
 
