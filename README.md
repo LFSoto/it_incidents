@@ -10,12 +10,12 @@ Para la ejecución de esta solucion necesita instalar Python 3.10 y Node 20.11.0
 * [Python 3.10](https://www.python.org/downloads/release/python-3100/)
 * [Node 20.11.0](https://nodejs.org/en/blog/release/v20.11.0)
 
-
+<!-- 
 ## Modelo
 ```
 pip install pandas
 pip install scikit-learn
-``` 
+```  -->
 
 ## Instrucciones para configurar el backend
 En este paso, desde una consola de comandos, entraremos al folder backend para configurar y levantar el ambiente virtual de Python donde se instalarán las dependencias. 
@@ -70,9 +70,16 @@ npm start
 ```
 
 ## Ejemplo de ejecución
-Inicie una conversación con el Chatbot y luego envíe un mensaje.
+Inicie una conversación con el Chatbot y luego envíe un mensaje. Puede saludarlo o preguntarle por un problema de IT.   
 
-## Sistemas operativos soportados
+Ejemplo:   
+> You: Hello   
+> Chatbot: Greetings! What can I do for you today?
 
+> You: Network switch has failed   
+> Chatbot: I see what you mean, it would be a good idea to inspect the switch and replace if necessary.
+
+## Sistemas operativos soportados   
+Esta solución ha sido probada con los siguientes Sistemas Operativos y sus versiones:   
 - Windows 11 Pro 23H2
 - Mac OS Sonoma 14.2.1

@@ -82,7 +82,7 @@ function Chatbot() {
                                 {exchange.query} <br />
                             </p> 
                             <div style={{textAlign: 'end'}}>
-                                <p>Bot</p>
+                                <p>Chatbot</p>
                                 <p>
                                     <TypeAnimation
                                         sequence={[exchange.reply, 1000]}

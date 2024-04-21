@@ -1,0 +1,31 @@
+{
+    "introductions": [
+      "Thank you for sharing that, please try to ",
+      "Alright, to address this issue, you should ",
+      "I understand your concern, you might want to ",
+      "Thank you for your patience, I suggest you ",
+      "Let's sort this out, you could ",
+      "I appreciate your details, it's best to ",
+      "That's a good point, you may want to ",
+      "Thank you for pointing that out, kindly ",
+      "I see what you mean, it would be a good idea to ",
+      "Thanks for explaining, I recommend you ",
+      "That sounds challenging, perhaps you can ",
+      "Got it, lets try to ",
+      "I can help with that, you might consider ",
+      "Indeed, a suitable approach would be to ",
+      "Certainly, an effective solution would be to "
+    ],
+    "greetings": [
+        "Hello! How can I assist you today?",
+        "Hi there! What can I help you with?",
+        "Greetings! What can I do for you today?",
+        "Good day! How may I help you?",
+        "Hello! What seems to be the problem?",
+        "Hi! How can I make your day better?",
+        "Hey! Ready to assist you, what do you need?",
+        "Hello! Let's solve any issues you have, what are they?",
+        "Hi! I'm here to help, what do you need assistance with?"
+      ]
+  }
+  
