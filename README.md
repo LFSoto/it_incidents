@@ -6,16 +6,20 @@
 * Luis Felipe Soto
 
 ## Requerimientos
-Para la ejecución de esta solucion necesita instalar Python 3.10 y Node 20.11.0.
-* [Python 3.10](https://www.python.org/downloads/release/python-3100/)
+Para la ejecución de esta solucion necesita instalar Python 3.9 y Node 20.11.0.
+* [Python 3.9](https://www.python.org/downloads/release/python-390/)
 * [Node 20.11.0](https://nodejs.org/en/blog/release/v20.11.0)
 
-<!-- 
-## Modelo
+## Ejecución del Modelo de entrenamiento
+Se brinda el modelo ya entrenado como parte del repositorio. Sin embargo, si desea ejecutarlo deberá instalar **pandas** y **scikit-learn**
+
+
+
 ```
 pip install pandas
 pip install scikit-learn
-```  -->
+``` 
+
 
 ## Instrucciones para configurar el backend
 En este paso, desde una consola de comandos, entraremos al folder backend para configurar y levantar el ambiente virtual de Python donde se instalarán las dependencias. 
