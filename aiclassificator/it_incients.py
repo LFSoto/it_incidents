@@ -1,16 +1,16 @@
 import pandas as pd
-import nltk
+#import nltk
 import random
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
-from nltk.corpus import wordnet
+#from nltk.corpus import wordnet
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-
+#from sklearn.metrics import classification_report
+#from sklearn.metrics import confusion_matrix
+'''
 nltk.download('omw-1.4')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
@@ -60,8 +60,9 @@ df['issue'] = df['issue'].astype(str)
 augmented_df = augment_data(df, synonym_replacement, num_augments=3)  # Adjust num_augments as needed
 
 df = pd.concat([df, augmented_df]).reset_index(drop=True)
-
+'''
 # Display the first few rows of the dataframe
+df = pd.read_csv('augmented_dataset.csv')
 print(df.head())
 df.to_csv('augmented_dataset.csv', index=False)
 
@@ -85,14 +86,14 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 # Print the classification report
-print(classification_report(y_test, y_pred))
+#print(classification_report(y_test, y_pred))
 
 # Generate the confusion matrix
-cm = confusion_matrix(y_test, y_pred)
+#cm = confusion_matrix(y_test, y_pred)
 
 # Plotting using seaborn for better visualization
 plt.figure(figsize=(10,7))
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+#sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
 plt.xlabel('Predicted Labels')
 plt.ylabel('True Labels')
 plt.title('Confusion Matrix')

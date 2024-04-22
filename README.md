@@ -27,6 +27,7 @@ En este paso, desde una consola de comandos, entraremos al folder backend para c
 cd backend
 python -m venv venv
 venv/bin/activate
+cd ..
 pip install -r requirements.txt
 ```
 

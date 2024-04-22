@@ -48,11 +48,14 @@ def get_solution(error_message):
 @app.route('/predict', methods=['POST'])
 def predict():
     # Transform the input using the loaded vectorizer
+    data = request.get_json(force=True)
     transformed_input = vectorizer.transform([data['description']])
     prediction = model.predict(transformed_input)
     print(prediction[0])
-    data = request.get_json(force=True)
-    return jsonify(solution=get_solution(data['description']))
+    #print(data['description'])
+    response = jsonify(solution=get_solution(data['description']))
+    response.header.add('Access-Control-Allow-Origin', '*') 
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
