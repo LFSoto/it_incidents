@@ -20,8 +20,8 @@ pip install -r requirements.txt
 Una vez instaladas las dependencias, debido a unos errores de compatibilidad con la versión de Python instalada, se debe hacer un cambio en el código fuente de la librería kanren y unification.
 
 Buscar uso de la librería **collections** y cambiarlo por **collections.abc** para los archivos:   
-```backend\venv\lib\python_version\site-packages\kanren\util.py```  
-```backend\venv\lib\python_version\site-packages\unification\core.py```
+```backend\venv\Lib\site-packages\kanren\util.py```  
+```backend\venv\Lib\site-packages\unification\core.py```
 
 #### Ejemplo del cambio:
 Para util.py:   
@@ -35,10 +35,9 @@ Cambiar a:
 `from collections.abc import Iterator`
 
 ## Ejecución del modelo de entrenamiento
-Se brinda el modelo ya entrenado como parte del repositorio. Sin embargo, si desea ejecutarlo deberá ejecutar los siguientes comandos:   
+Se brinda el modelo ya entrenado como parte del repositorio. Sin embargo, si desea ejecutarlo deberá ejecutar los siguientes comandos desde el root del proyecto:   
 ```
-cd aiclassificator
-python .\it_incients.py
+python .\aiclassificator\it_incients.py
 ```   
 
 Esto generará dos archivos, `it_problem_classifier.pkl` y `vectorizer.pkl`. Estos archivos se encuentran en la carpeta `aiclassificator`.
@@ -46,15 +45,13 @@ Esto generará dos archivos, `it_problem_classifier.pkl` y `vectorizer.pkl`. Est
 ## Ejecutar la base de datos
 Para ejecutar la base de datos deberá ir al folder **backend/database** y ejecutar el archivo `database.py` para crear la base de datos. Desde el root del proyecto ejecutar los siguientes comandos:
 ``` 
-cd backend/database 
-python database.py
+python .\backend\database\database.py
 ```
 
 ## Ejecutar servicio del backend
 Una vez se crea la base de datos, procederemos a ejecutar el servicio que habilita el API REST para la comunicación con el frontend. Desde el root del proyecto ejecutar los siguientes comandos:
 ```
-cd backend 
-python chat_service.py
+python .\backend\chat_service.py
 ```
 
 ## Ejecutar interfaz de usuario

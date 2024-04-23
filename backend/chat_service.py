@@ -9,12 +9,12 @@ import joblib
 app = Flask(__name__)
 CORS(app)
 
-model = joblib.load('../aiclassificator/it_problem_classifier.pkl')
-vectorizer = joblib.load('../aiclassificator/vectorizer.pkl')
+model = joblib.load('aiclassificator/it_problem_classifier.pkl')
+vectorizer = joblib.load('aiclassificator/vectorizer.pkl')
 
 
 def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
-    with open("./generics.json", 'r') as file:
+    with open("./backend/generics.json", 'r') as file:
         data = json.load(file)
     if isGreeting:
         return random.choice(data['greetings'])
@@ -24,7 +24,7 @@ def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
 
 def load_knowledge_base():
     error_solution = Relation() 
-    conn = sqlite3.connect('database/it_support.db')
+    conn = sqlite3.connect('./backend/database/it_support.db')
     cursor = conn.cursor()
     cursor.execute('SELECT error, solution FROM solutions')
     db_facts = cursor.fetchall()

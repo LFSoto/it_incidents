@@ -52,7 +52,7 @@ def augment_data(dataframe, augment_func, num_augments=1):
 
 
 # Load data
-df = pd.read_csv('incidents_database.csv')
+df = pd.read_csv('aiclassificator/incidents_database.csv')
 df['description'] = df['description'].astype(str)
 df['caller'] = df['caller'].astype(str)
 df['issue'] = df['issue'].astype(str)
@@ -62,9 +62,9 @@ augmented_df = augment_data(df, synonym_replacement, num_augments=3)  # Adjust n
 df = pd.concat([df, augmented_df]).reset_index(drop=True)
 
 # Display the first few rows of the dataframe
-df = pd.read_csv('augmented_dataset.csv')
+df = pd.read_csv('aiclassificator/augmented_dataset.csv')
 print(df.head())
-df.to_csv('augmented_dataset.csv', index=False)
+df.to_csv('aiclassificator/augmented_dataset.csv', index=False)
 
 # Initialize the TfidfVectorizer
 vectorizer = TfidfVectorizer(stop_words='english', max_features=1000)
@@ -100,7 +100,7 @@ plt.title('Confusion Matrix')
 plt.show()
 
 # Save the model
-joblib.dump(model, 'it_problem_classifier.pkl')
+joblib.dump(model, 'aiclassificator/it_problem_classifier.pkl')
 
 # Save the vectorizer
-joblib.dump(vectorizer, 'vectorizer.pkl')
+joblib.dump(vectorizer, 'aiclassificator/vectorizer.pkl')
