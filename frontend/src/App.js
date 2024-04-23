@@ -24,6 +24,7 @@ function Chatbot() {
         container: {
             fontFamily: 'Arial, sans-serif',
             maxWidth: '600px',
+            maxHeight: '1080px',
             margin: '0 auto',
             padding: '20px',
             backgroundColor: '#f5f5f5',
@@ -55,7 +56,7 @@ function Chatbot() {
         },
         messages: {
             flex: 1,
-            overflowY: 'auto'
+            overflowY: 'scroll',
         },
         message: {
             margin: '5px 0',
@@ -73,7 +74,6 @@ function Chatbot() {
     return (
         <div style={styles.container}>
             <h1>IT Support Chatbot</h1>
-            <div style={styles.messages}>
                 <div style={styles.messages}>
                     {responses.map((exchange, index) => (
                         <p key={index}>
@@ -92,8 +92,10 @@ function Chatbot() {
                             </div>
                         </p>
                     ))}
-                </div>   
-            </div>
+                </div>  
+                <div>
+                </div> 
+            
             <form onSubmit={handleSubmit} style={styles.form}>
                 <input
                     type="text"
