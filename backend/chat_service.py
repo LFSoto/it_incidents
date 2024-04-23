@@ -8,7 +8,6 @@ import joblib
 
 app = Flask(__name__)
 CORS(app)
-error_solution = Relation()
 
 model = joblib.load('../aiclassificator/it_problem_classifier.pkl')
 vectorizer = joblib.load('../aiclassificator/vectorizer.pkl')
@@ -24,7 +23,8 @@ def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
 
 
 def load_knowledge_base():
-    conn = sqlite3.connect('it_support.db')
+    error_solution = Relation() 
+    conn = sqlite3.connect('database/it_support.db')
     cursor = conn.cursor()
     cursor.execute('SELECT error, solution FROM solutions')
     db_facts = cursor.fetchall()
@@ -34,8 +34,6 @@ def load_knowledge_base():
 
 
 def get_solution(error_message):
-    if error_message.lower() == 'hello' or error_message.lower() == 'hi':
-        return get_random_generic_from_json(True)
     error_solution = load_knowledge_base()
     solution = var()
     result = run(1, solution, error_solution(error_message.lower(), solution))
@@ -45,14 +43,23 @@ def get_solution(error_message):
         return "No solution found for this error. Please contact IT support."
 
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Transform the input using the loaded vectorizer
+def get_prediction(data):
+    data = request.get_json(force=True)
     transformed_input = vectorizer.transform([data['description']])
     prediction = model.predict(transformed_input)
-    print(prediction[0])
+    return prediction[0].strip().replace('"','')
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
     data = request.get_json(force=True)
-    return jsonify(solution=get_solution(data['description']))
+    if data['description'].lower() == 'hello' or data['description'].lower() == 'hi':
+        response = jsonify(solution=get_random_generic_from_json(True))
+    else:
+        response = jsonify(solution=get_solution(get_prediction(data)))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -62,6 +62,7 @@ augmented_df = augment_data(df, synonym_replacement, num_augments=3)  # Adjust n
 df = pd.concat([df, augmented_df]).reset_index(drop=True)
 
 # Display the first few rows of the dataframe
+df = pd.read_csv('augmented_dataset.csv')
 print(df.head())
 df.to_csv('augmented_dataset.csv', index=False)
 
