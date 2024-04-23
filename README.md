@@ -44,7 +44,7 @@ python .\it_incients.py
 Esto generará dos archivos, `it_problem_classifier.pkl` y `vectorizer.pkl`. Estos archivos se encuentran en la carpeta `aiclassificator`.
 
 ## Ejecutar la base de datos
-Una vez hecho los cambios manuales en los paquetes instalados, deberá ir al folder **backend** y ejecutar el archivo **database.py** para crear la base de datos. Desde el root del proyecto ejecutar los siguientes comandos:
+Para ejecutar la base de datos deberá ir al folder **backend/database** y ejecutar el archivo `database.py` para crear la base de datos. Desde el root del proyecto ejecutar los siguientes comandos:
 ``` 
 cd backend/database 
 python database.py
@@ -70,16 +70,16 @@ Inicie una conversación con el Chatbot y luego envíe un mensaje. Puede saludar
 
 Ejemplo:   
 > You: Hello   
-> Chatbot: Greetings! What can I do for you today?
+> Chatbot: Greetings! What can I do for you today?  
 
 > You: Network switch has failed   
 > Chatbot: I see what you mean, it would be a good idea to inspect the switch and replace if necessary.
 
-> You: I have an issue with the mouse, it is not working
-> Chatbot: Thank you for pointing that out, kindly check the mouse connection and replace batteries if wireless.
+> You: I have an issue with the mouse, it is not working    
+> Chatbot: Thank you for pointing that out, kindly check the mouse connection and replace batteries if wireless.    
 
-> You: My microphone is not capturing the sound when I talk near to it
-> Chatbot: Indeed, a suitable approach would be to check sound settings and speakers/headphones connection.
+> You: My microphone is not capturing the sound when I talk near to it  
+> Chatbot: Indeed, a suitable approach would be to check sound settings and speakers/headphones connection. 
 
 ## Sistemas operativos soportados   
 Esta solución ha sido probada con los siguientes Sistemas Operativos y sus versiones:   
