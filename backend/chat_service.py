@@ -24,7 +24,7 @@ def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
 
 def load_knowledge_base():
     error_solution = Relation() 
-    conn = sqlite3.connect('it_support.db')
+    conn = sqlite3.connect('database/it_support.db')
     cursor = conn.cursor()
     cursor.execute('SELECT error, solution FROM solutions')
     db_facts = cursor.fetchall()
@@ -54,8 +54,11 @@ def get_prediction(data):
 def predict():
     data = request.get_json(force=True)
     if data['description'].lower() == 'hello' or data['description'].lower() == 'hi':
-        return jsonify(solution=get_random_generic_from_json(True))
-    return jsonify(solution=get_solution(get_prediction(data)))
+        response = jsonify(solution=get_random_generic_from_json(True))
+    else:
+        response = jsonify(solution=get_solution(get_prediction(data)))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == '__main__':
