@@ -8,7 +8,6 @@ import joblib
 
 app = Flask(__name__)
 CORS(app)
-error_solution = Relation()
 
 model = joblib.load('../aiclassificator/it_problem_classifier.pkl')
 vectorizer = joblib.load('../aiclassificator/vectorizer.pkl')
@@ -24,6 +23,7 @@ def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
 
 
 def load_knowledge_base():
+    error_solution = Relation() 
     conn = sqlite3.connect('it_support.db')
     cursor = conn.cursor()
     cursor.execute('SELECT error, solution FROM solutions')
@@ -56,6 +56,7 @@ def predict():
     if data['description'].lower() == 'hello' or data['description'].lower() == 'hi':
         return jsonify(solution=get_random_generic_from_json(True))
     return jsonify(solution=get_solution(get_prediction(data)))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
