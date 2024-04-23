@@ -14,7 +14,7 @@ Para la ejecución de esta solucion necesita instalar Python 3.11.9 y Node 20.11
 Para configurar el ambiente virtual y descargar las dependencias de la solución deberá ejecutar los siguientes comandos en el root de la solución desde un powershell.   
 ```
 python -m venv venv
-venv/bin/activate
+venv/Scripts/activate
 pip install -r requirements.txt
 ```    
 Una vez instaladas las dependencias, debido a unos errores de compatibilidad con la versión de Python instalada, se debe hacer un cambio en el código fuente de la librería kanren y unification.
@@ -58,7 +58,7 @@ python chat_service.py
 ```
 
 ## Ejecutar interfaz de usuario
-Ahora cuando el servicio del API REST está en ejecución, deberá ejecutar el frontend. Desde el root del proyecto ejecutar los siguientes comandos:
+Ahora cuando el servicio del API REST está en ejecución, en otra terminal deberá ejecutar el frontend. Desde el root del proyecto ejecutar los siguientes comandos:
 ```
 cd frontend
 npm install
