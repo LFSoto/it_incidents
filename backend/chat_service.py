@@ -34,8 +34,6 @@ def load_knowledge_base():
 
 
 def get_solution(error_message):
-    if error_message.lower() == 'hello' or error_message.lower() == 'hi':
-        return get_random_generic_from_json(True)
     error_solution = load_knowledge_base()
     solution = var()
     result = run(1, solution, error_solution(error_message.lower(), solution))
@@ -45,17 +43,19 @@ def get_solution(error_message):
         return "No solution found for this error. Please contact IT support."
 
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Transform the input using the loaded vectorizer
+def get_prediction(data):
     data = request.get_json(force=True)
     transformed_input = vectorizer.transform([data['description']])
     prediction = model.predict(transformed_input)
-    print(prediction[0])
-    #print(data['description'])
-    response = jsonify(solution=get_solution(data['description']))
-    response.header.add('Access-Control-Allow-Origin', '*') 
-    return response
+    return prediction[0].strip().replace('"','')
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json(force=True)
+    if data['description'].lower() == 'hello' or data['description'].lower() == 'hi':
+        return jsonify(solution=get_random_generic_from_json(True))
+    return jsonify(solution=get_solution(get_prediction(data)))
 
 if __name__ == '__main__':
     app.run(debug=True)
