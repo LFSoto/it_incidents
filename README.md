@@ -13,7 +13,7 @@ To run this solution, you need to install Python 3.11.9 and Node 20.11.0.
 * [Node 20.11.0](https://nodejs.org/en/blog/release/v20.11.0)
 
 ## Set up the virtual environment and download dependencies
-To set up the virtual environment and download the solution dependencies, you must execute the following commands in the solution root directory from a terminal.
+To set up the virtual environment and download the solution dependencies, you must execute the following commands in the solution root directory from a **Windows PowerShell** terminal.
 ```
 python -m venv venv
 venv/Scripts/activate
@@ -22,8 +22,8 @@ pip install -r requirements.txt
 Once the dependencies are installed, due to some compatibility errors with the installed Python version, a change must be made in the source code of the Kanren and unification libraries.
 
 Search for the use of the **collections** library and change it to **collections.abc** for the files:   
-```backend\venv\Lib\site-packages\kanren\util.py```  
-```backend\venv\Lib\site-packages\unification\core.py```
+```venv\Lib\site-packages\kanren\util.py```  
+```venv\Lib\site-packages\unification\core.py```
 
 #### Example of the change:
 ``` py
@@ -59,7 +59,7 @@ python .\backend\chat_service.py
 ```
 
 ## Run user interface
-Now, when the REST API service is running, in another terminal, you should run the frontend. From the project **root folder**, execute the following commands:
+Now, when the REST API service is running, in another **Windows PowerShell** terminal, you should run the frontend. From the project **root folder**, execute the following commands:
 ```
 cd frontend
 npm install
@@ -85,4 +85,3 @@ Example:
 ## Supported Operating Systems   
 This solution has been tested with the following Operating Systems and their versions:  
 - Windows 11 Pro 23H2
-- Mac OS Sonoma 14.2.1
