@@ -83,5 +83,5 @@ Example:
 > Chatbot: Indeed, a suitable approach would be to check sound settings and speakers/headphones connection. 
 
 ## Supported Operating Systems   
-This solution has been tested with the following Operating Systems and their versions:  
+This solution has been tested with the following Operating System and it version:  
 - Windows 11 Pro 23H2
