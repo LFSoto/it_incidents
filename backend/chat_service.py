@@ -5,13 +5,19 @@ import sqlite3
 import random
 import json
 import joblib
+import os
+import openai
+from openai import OpenAI
 
 app = Flask(__name__)
 CORS(app)
 
 model = joblib.load('aiclassificator/it_problem_classifier.pkl')
 vectorizer = joblib.load('aiclassificator/vectorizer.pkl')
-
+client = OpenAI(
+    # On CMD setx OPENAI_API_KEY "your-api-key-here"
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
 def get_random_generic_from_json(isGreeting=None, isIntroduccion=None):
     with open("./backend/generics.json", 'r') as file:
@@ -59,6 +65,27 @@ def predict():
         response = jsonify(solution=get_solution(get_prediction(data)))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+
+@app.route('/gpt', methods=['POST'])
+def gpt():
+    data = request.get_json(force=True)
+    prompt = data['description']
+
+    try:
+        messages = [
+                {"role": "user", "content": prompt},
+            ]
+        response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=messages
+            )
+        formated = {
+            "content": response.choices[0].message.content
+        }
+        return jsonify(formated), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':

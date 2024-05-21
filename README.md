@@ -16,14 +16,18 @@ To run this solution, you need to install Python 3.11.9 and Node 20.11.0.
 To set up the virtual environment and download the solution dependencies, you must execute the following commands in the solution root directory from a terminal.
 ```
 python -m venv venv
+# Windows
 venv/Scripts/activate
+
+# MAC 
+source venv/bin/activate
 pip install -r requirements.txt
 ```    
 Once the dependencies are installed, due to some compatibility errors with the installed Python version, a change must be made in the source code of the Kanren and unification libraries.
 
 Search for the use of the **collections** library and change it to **collections.abc** for the files:   
-```backend\venv\Lib\site-packages\kanren\util.py```  
-```backend\venv\Lib\site-packages\unification\core.py```
+```venv\Lib\site-packages\kanren\util.py```  
+```venv\Lib\site-packages\unification\core.py```
 
 #### Example of the change:
 ``` py
