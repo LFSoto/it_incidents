@@ -13,7 +13,8 @@ To run this solution, you need to install Python 3.11.9 and Node 20.11.0.
 * [Node 20.11.0](https://nodejs.org/en/blog/release/v20.11.0)
 
 ## Set up the virtual environment and download dependencies
-To set up the virtual environment and download the solution dependencies, you must execute the following commands in the solution root directory from a terminal.
+To set up the virtual environment and download the solution dependencies, you must execute the following commands in the solution root directory from a **Windows PowerShell** terminal.  
+Windows:
 ```
 python -m venv venv
 # Windows
@@ -22,7 +23,14 @@ venv/Scripts/activate
 # MAC 
 source venv/bin/activate
 pip install -r requirements.txt
-```    
+```
+For MacOS:
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 Once the dependencies are installed, due to some compatibility errors with the installed Python version, a change must be made in the source code of the Kanren and unification libraries.
 
 Search for the use of the **collections** library and change it to **collections.abc** for the files:   
@@ -43,27 +51,39 @@ from collections.abc import Iterator
 ```
 
 ## Train the model
-The model is already trained and the files are provided as part of the repository. However, if you want to run it, you should execute the following command from the root folder:   
+The model is already trained and the files are provided as part of the repository. However, if you want to run it, you need **a Windows environment**, and execute the following command from the root folder:   
+Windows:
 ```
 python .\aiclassificator\it_incients.py
-```   
+```
 
 This will generate two files, `it_problem_classifier.pkl` and `vectorizer.pkl`. These files are located in the `aiclassificator` folder.
 
 ## Run the database
-To run the database, from the project **root folder**, execute the following commands:
+To run the database, from the project **root folder**, execute the following commands:  
+Windows:
 ``` 
 python .\backend\database\database.py
 ```
+MacOS:
+```
+python /backend/database/database.py
+```
 
 ## Run backend service
-Once the database is created, we will proceed to run the service that enables the REST API for communication with the frontend. From the project **root folder**, execute the following commands:
+Once the database is created, we will procceed to run the service that enables the REST API for communication with the frontend. From the project **root folder**, execute the following commands:  
+Windows
 ```
 python .\backend\chat_service.py
 ```
+MacOS:
+```
+python /backend/chat_service.py
+```
 
 ## Run user interface
-Now, when the REST API service is running, in another terminal, you should run the frontend. From the project **root folder**, execute the following commands:
+Now, when the REST API service is running, in another **Windows PowerShell** terminal, you should run the frontend. From the project **root folder**, execute the following commands:  
+Windows & MacOS:
 ```
 cd frontend
 npm install
@@ -87,6 +107,6 @@ Example:
 > Chatbot: Indeed, a suitable approach would be to check sound settings and speakers/headphones connection. 
 
 ## Supported Operating Systems   
-This solution has been tested with the following Operating Systems and their versions:  
+This solution has been tested with the following Operating System and it version:  
 - Windows 11 Pro 23H2
 - Mac OS Sonoma 14.2.1
