@@ -11,15 +11,13 @@ data = pd.read_csv(dataset_path)
 # Convert the 'answers' from stringified dictionaries to actual dictionaries
 data['answers'] = data['answers'].apply(ast.literal_eval)
 
-# Function to preprocess text (simple version)
 def preprocess(text):
-    text = text.lower().strip()  # Convert to lower case and strip whitespaces
+    text = text.lower().strip()
     return text
 
-# Correct the answer_start positions
 for index, row in data.iterrows():
     context = preprocess(row['context'])
-    answer = row['answers']  # 'answers' are already dict objects
+    answer = row['answers']
     answer_text = preprocess(answer['text'])
     
     # Find the corrected start position if not -1 or incorrect
@@ -33,12 +31,10 @@ for index, row in data.iterrows():
 corrected_dataset_path = 'aiclassificator/corrected_qa_incidents_dataset.csv'
 data.to_csv(corrected_dataset_path, index=False)
 
-print(data.head())  # Output the first few corrected entries
+print(data.head())
 
 # Convert DataFrame to Hugging Face dataset
 hf_dataset = Dataset.from_pandas(data)
-
-# Split the dataset into train and validation
 hf_dataset = hf_dataset.train_test_split(test_size=0.1)
 
 # Tokenization function to prepare data for the model
@@ -67,7 +63,6 @@ def prepare_data(examples):
         sequence_ids = tokenized_inputs.sequence_ids(i)
         offset_mapping = tokenized_inputs.offset_mapping[i]
 
-        # Use a default value (e.g., 0) when a matching token index is not found
         start_position = next(
             (idx for idx, (start, end) in enumerate(offset_mapping)
              if start <= start_char < end and sequence_ids[idx] == 1), 0
@@ -89,11 +84,7 @@ def prepare_data(examples):
 
 # Apply the function to tokenize data
 tokenized_data = hf_dataset.map(prepare_data, batched=True)
-
-# Define the format of the data to feed into the model
 tokenized_data.set_format(type='torch', columns=['input_ids', 'attention_mask', 'start_positions', 'end_positions'])
-
-# Load the pre-trained model
 model = AutoModelForQuestionAnswering.from_pretrained("deepset/roberta-base-squad2")
 
 # Training arguments
